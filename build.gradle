@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id "com.gradleup.shadow" version "9.0.0-beta4"
+
 }
 
 group = 'com.kammoun'
@@ -20,14 +22,19 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
+    compileOnly "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
     compileOnly "com.github.MilkBowl:VaultAPI:1.7"
     implementation files('libs/Vault.jar')
-
-
+}
+shadowJar{
+    archiveBaseName.set('CommandBlocks')
+    archiveVersion.set('1.4.0')
+    archiveClassifier.set('all')
+    mergeServiceFiles()
+    destinationDirectory.set(file("C:/Users/ahmed/OneDrive/Desktop/MC SERVERS/server 1.16.5/plugins"))
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 16
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
